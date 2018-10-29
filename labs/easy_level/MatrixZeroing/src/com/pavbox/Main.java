@@ -1,3 +1,4 @@
+package com.pavbox;
 import java.util.Scanner;
 
 /**
