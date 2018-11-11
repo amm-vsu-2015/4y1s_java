@@ -1,10 +1,12 @@
 package com.pavbox;
 
-public class QueenBoard {
+class QueenBoard {
 
     private final static int SIZE = 8;
 
     private boolean board[][] = new boolean[SIZE][SIZE];
+    
+    private boolean needToShow = true;
 
     private void showBoard() {
         for (int idx_a = 0; idx_a < SIZE; ++idx_a) {
@@ -48,20 +50,20 @@ public class QueenBoard {
 
     // counter is count of solution
     // solution is selected variant of queens positions
-    void setQueen(int column, int counter, int solution) {
-        if (column == SIZE) counter++;
-
+    void setQueen(int column) {
         // show selected suluions and similar mirrored solution
-        if ((counter == solution || counter == 92 - solution + 1) && column == SIZE) {
+
+        if (column == SIZE && needToShow) {
             showBoard();
+            needToShow = false;
             return;
         }
 
         for (int idx_i = 0; idx_i < SIZE; ++idx_i) {
             if (tryQueen(idx_i, column)) {
                 board[idx_i][column] = true; // set queen
-                setQueen(column + 1, counter, solution);
-                board[idx_i][column] = false; // unset queen, clearing for other solutions
+                setQueen(column + 1);
+                board[idx_i][column] = false; // set queen
             }
         }
     }
