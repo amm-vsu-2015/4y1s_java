@@ -5,7 +5,7 @@ class QueenBoard {
     private final static int SIZE = 8;
 
     private boolean board[][] = new boolean[SIZE][SIZE];
-    
+
     private boolean needToShow = true;
 
     private void showBoard() {
